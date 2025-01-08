@@ -10,9 +10,15 @@ internal static class Program
         var centroidController = new CentroidController();
         var pointController = new PointController();
         
-        pointController.CreatePoints();
-        centroidController.CreateCentroids();
-
+        pointController.InitializePoints();
+        centroidController.InitializeCentroids();
+        
+        pointController.ReclusterPoints(centroidController.GetCentroids());
+        // Draw once.
+        centroidController.RecenterAll(pointController.GetPoints());
+        // Draw again.
+        
+        // Debug Testing.
         foreach (var centroid in centroidController.GetCentroids())
         {
             Console.WriteLine("X: " + centroid.X);
