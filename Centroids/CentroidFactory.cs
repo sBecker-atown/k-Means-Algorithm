@@ -6,6 +6,6 @@ public static class CentroidFactory
     
     public static Centroid CreateCentroid(int clusterId)
     {
-        return new Centroid(Rnd.Next(1, 26), Rnd.Next(1, 26), clusterId);
+        return new Centroid(Rnd.Next(0, 26), Rnd.Next(0, 26), clusterId);
     }
 }
