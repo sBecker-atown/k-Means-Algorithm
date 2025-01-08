@@ -2,18 +2,11 @@ using KMean_Algo.Centroids;
 
 namespace KMean_Algo.Points;
 
-public class Point 
+public class Point(int x, int y, int clusterId)
 {
-    public int X { get; }
-    public int Y { get; }
-    public int ClusterId { get; private set; }
-
-    public Point(int x, int y, int clusterId)
-    {
-        X = x;
-        Y = y; 
-        ClusterId = clusterId;
-    }
+    public int X { get; } = x;
+    public int Y { get; } = y;
+    public int ClusterId { get; private set; } = clusterId;
 
     public double Distance(Centroid pointB)
     {
