@@ -6,6 +6,6 @@ public static class PointFactory
     
     public static Point CreatePoint()
     {
-        return new Point(Rnd.Next(1, 26), Rnd.Next(1, 26), 0);
+        return new Point(Rnd.Next(0, 26), Rnd.Next(0, 26), 0);
     }
 }
