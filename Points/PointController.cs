@@ -4,7 +4,7 @@ namespace KMean_Algo.Points;
 
 public class PointController
 {
-    private readonly List<Point> _points = new ();
+    private readonly List<Point> _points = [];
     private readonly Random _rnd = new();
 
     public void InitializePoints()

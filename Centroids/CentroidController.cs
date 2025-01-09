@@ -4,7 +4,7 @@ namespace KMean_Algo.Centroids;
 
 public class CentroidController
 {
-    private readonly List<Centroid> _centroids = new ();
+    private readonly List<Centroid> _centroids = [];
 
     public void InitializeCentroids()
     {
