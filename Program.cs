@@ -7,19 +7,20 @@ internal static class Program
 {
     public static void Main(string[] args)
     {
-        var centroidController = new CentroidController();
-        var pointController = new PointController();
+        var centroidCalculator = new CentroidCalculator();
+        var pointClusterCreator = new PointClusterCreator();
+        var canvas = new Canvas();
         
-        pointController.InitializePoints();
-        centroidController.InitializeCentroids();
+        canvas.InitializePoints();
+        canvas.InitializeCentroids();
         
-        pointController.ReclusterPoints(centroidController.GetCentroids());
+        pointClusterCreator.ReclusterPoints(canvas.GetCentroids(), canvas.GetPoints());
         // Draw once.
-        centroidController.RecenterAll(pointController.GetPoints());
+        centroidCalculator.RecenterAll(canvas.GetCentroids(), canvas.GetPoints());
         // Draw again.
         
         // Debug Testing.
-        foreach (var centroid in centroidController.GetCentroids())
+        foreach (var centroid in canvas.GetCentroids())
         {
             Console.WriteLine("X: " + centroid.X);
             Console.WriteLine("Y: " + centroid.Y);
