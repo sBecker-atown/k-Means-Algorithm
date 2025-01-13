@@ -3,7 +3,7 @@ using KMean_Algo.Points;
 
 namespace KMean_Algo;
 
-internal class Canvas
+public class Canvas
 {
     private readonly List<Centroid> _centroids = [];
     private readonly List<Point> _points = [];
