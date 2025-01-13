@@ -2,8 +2,8 @@ namespace KMean_Algo;
 
 public static class Values
 {
-    public const int MaxWidth = 25;
-    public const int MaxHeight = 25;
+    public const int MaxWidth = 100;
+    public const int MaxHeight = 100;
     
     public const int NumCentroids = 3;
 
