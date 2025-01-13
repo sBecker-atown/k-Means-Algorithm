@@ -1,6 +1,6 @@
 namespace KMean_Algo.Centroids;
 
-public static class CentroidFactory
+internal static class CentroidFactory
 {
     private static readonly Random Rnd = new();
     
