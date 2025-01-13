@@ -1,6 +1,6 @@
 namespace KMean_Algo.Points;
 
-public static class PointFactory
+internal static class PointFactory
 {
     private static readonly Random Rnd = new();
     
