@@ -8,12 +8,12 @@ internal class PointClusterCreator
     {
         foreach (var point in points)
         {
-            int? shortestDistance = null;
+            double? shortestDistance = null;
             Centroid? nearestCentroid  = null;
             
             foreach (var centroid in centroids)
             {
-                var currentDistance = (int) point.Distance(centroid);
+                var currentDistance = point.Distance(centroid);
                 if (shortestDistance == null)
                 {
                     shortestDistance = currentDistance;
