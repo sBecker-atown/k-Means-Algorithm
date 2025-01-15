@@ -1,6 +1,6 @@
-﻿using System.Xml;
-using KMean_Algo.Centroids;
+﻿using KMean_Algo.Centroids;
 using KMean_Algo.Points;
+using KMean_Algo.Rendering;
 
 namespace KMean_Algo;
 
@@ -11,25 +11,33 @@ internal static class Program
         var centroidCalculator = new CentroidCalculator();
         var pointClusterCreator = new PointClusterCreator();
         var canvas = new Canvas();
+        var renderer = new Renderer();
         
         canvas.InitializePoints();
         canvas.InitializeCentroids();
-
-        Output(canvas);
         
-        var iterations = 3; 
-
+        // Draw once
+        Console.WriteLine("Iteration 0");
+        pointClusterCreator.ReclusterPoints(canvas.GetCentroids(), canvas.GetPoints());
+        renderer.MapRenderPoints(canvas.GetPoints(), canvas.GetCentroids());
+        renderer.Draw();
+        Console.WriteLine();
+        
+        var iterations = 5; 
+        
         for (var i = 0; i < iterations; i++)
         {
-            pointClusterCreator.ReclusterPoints(canvas.GetCentroids(), canvas.GetPoints());
-            centroidCalculator.RecenterAll(canvas.GetCentroids(), canvas.GetPoints());
             Console.WriteLine($"Iteration {i + 1}");
             Console.WriteLine();
-            Output(canvas);
+            centroidCalculator.RecenterAll(canvas.GetCentroids(), canvas.GetPoints());
+            renderer.MapRenderPoints(canvas.GetPoints(), canvas.GetCentroids());
+            renderer.Draw();
+            Console.WriteLine();
+            pointClusterCreator.ReclusterPoints(canvas.GetCentroids(), canvas.GetPoints());
         }
     }
 
-    private static void Output(Canvas canvas)
+    /* private static void Output(Canvas canvas)
     {
         Console.WriteLine("Centroids:");
         foreach (var centroid in canvas.GetCentroids())
@@ -43,5 +51,5 @@ internal static class Program
             Console.WriteLine(point);
         }
         Console.WriteLine();
-    }
+    } */
 } 
