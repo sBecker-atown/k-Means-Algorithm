@@ -9,27 +9,18 @@ internal class PointClusterCreator
         foreach (var point in points)
         {
             double? shortestDistance = null;
-            Centroid? nearestCentroid  = null;
-            
+            var nearestCentroidId = 0;
+
             foreach (var centroid in centroids)
             {
                 var currentDistance = point.Distance(centroid);
-                if (shortestDistance == null)
+                if (shortestDistance == null || currentDistance < shortestDistance)
                 {
                     shortestDistance = currentDistance;
-                    nearestCentroid = centroid;
-                    continue;
+                    nearestCentroidId = centroid.ClusterId;
                 }
-                if (currentDistance < shortestDistance)
-                {
-                    shortestDistance = currentDistance;
-                    nearestCentroid = centroid;
-                }
-            }
-            if (nearestCentroid != null)
-            {
-                point.SetCluster(nearestCentroid.ClusterId);
-            }
+            } 
+            point.ClusterId = nearestCentroidId;
         } 
     }
 }
