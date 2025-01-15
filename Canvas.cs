@@ -28,5 +28,4 @@ public class Canvas
             _centroids.Add(CentroidFactory.CreateCentroid(i));
         }
     }
-    
 }
