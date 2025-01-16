@@ -24,6 +24,9 @@ internal class Renderer
         {
             var vertical = (int)Math.Floor(centroid.Y);
             var horizontal = (int)Math.Floor(centroid.X);
+
+            vertical = NormalizeVertical(vertical);
+            horizontal = NormalizeHorizontal(horizontal);
             
             _renderPoints[vertical, horizontal].Type = PointType.Centroid;
             _renderPoints[vertical, horizontal].ClusterId = centroid.ClusterId;
@@ -32,6 +35,9 @@ internal class Renderer
         {
             var vertical = (int)Math.Floor(point.Y);
             var horizontal = (int)Math.Floor(point.X);
+            
+            vertical = NormalizeVertical(vertical);
+            horizontal = NormalizeHorizontal(horizontal);
             
             if (_renderPoints[vertical,horizontal].Type == PointType.Centroid)
             {
@@ -145,5 +151,31 @@ internal class Renderer
             }
             Console.Write("\n");
         }
+    }
+
+    private int NormalizeVertical(int value)
+    {
+        if (value <= 0)
+        {
+            return 1;
+        }
+        if (value >= Values.MaxHeight)
+        {
+            return Values.MaxHeight - 1;
+        }
+        return value;
+    }
+    
+    private int NormalizeHorizontal(int value)
+    {
+        if (value <= 0)
+        {
+            return 1;
+        }
+        if (value >= Values.MaxWidth)
+        {
+            return Values.MaxWidth - 1;
+        }
+        return value;
     }
 }
