@@ -51,7 +51,7 @@ internal class Renderer
     public void Draw()
     {
         var centroid = "\u25cf";
-        var point = "•"; //"•" "\u25aa"
+        var point = "•"; // "*"; //"•" "\u25aa"
         var blank = " ";
         
         for (var i = 0; i < Values.MaxHeight; i++)
