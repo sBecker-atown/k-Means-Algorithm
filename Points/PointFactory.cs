@@ -1,14 +1,14 @@
 namespace KMean_Algo.Points;
 
-internal static class PointFactory
+internal class PointFactory
 {
-    private static readonly Random Rnd = new();
+    private readonly Random _rnd = new();
     
-    public static Point CreatePoint()
+    public Point CreatePoint()
     {
         return new Point(
-            Rnd.Next(0, Values.MaxWidth), 
-            Rnd.Next(0, Values.MaxHeight), 
+            _rnd.Next(0, Values.MaxWidth), 
+            _rnd.Next(0, Values.MaxHeight), 
             0
             );
     }

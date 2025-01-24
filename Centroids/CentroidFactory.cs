@@ -1,14 +1,14 @@
 namespace KMean_Algo.Centroids;
 
-internal static class CentroidFactory
+internal class CentroidFactory
 {
-    private static readonly Random Rnd = new();
+    private readonly Random _rnd = new();
     
-    public static Centroid CreateCentroid(int clusterId)
+    public Centroid CreateCentroid(int clusterId)
     {
         return new Centroid(
-            Rnd.Next(0, Values.MaxWidth + 1), 
-            Rnd.Next(0, Values.MaxHeight + 1), 
+            _rnd.Next(0, Values.MaxWidth + 1), 
+            _rnd.Next(0, Values.MaxHeight + 1), 
             clusterId
             );
     }
