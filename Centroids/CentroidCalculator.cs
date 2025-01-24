@@ -21,8 +21,8 @@ internal class CentroidCalculator
                     numPoints++;
                 }
             }
-            centroid.SetX(sumX / numPoints);
-            centroid.SetY(sumY / numPoints);
+            centroid.X = sumX / numPoints;
+            centroid.Y = sumY / numPoints;
         }
     }
 }
