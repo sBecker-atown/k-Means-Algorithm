@@ -120,14 +120,11 @@ internal class Renderer
     
     private int NormalizeHorizontal(int value)
     {
-        if (value <= 0)
+        return value switch
         {
-            return 1;
-        }
-        if (value >= Values.MaxWidth)
-        {
-            return Values.MaxWidth - 1;
-        }
-        return value;
+            <= 0 => 1,
+            >= Values.MaxWidth => Values.MaxWidth - 1,
+            _ => value
+        };
     }
 }
