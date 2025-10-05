@@ -36,20 +36,4 @@ internal static class Program
             pointClusterCreator.ReclusterPoints(canvas.GetCentroids(), canvas.GetPoints());
         }
     }
-
-    /* private static void Output(Canvas canvas)
-    {
-        Console.WriteLine("Centroids:");
-        foreach (var centroid in canvas.GetCentroids())
-        {
-            Console.WriteLine(centroid);
-        }
-        Console.WriteLine();
-        Console.WriteLine("Points:");
-        foreach (var point in canvas.GetPoints())
-        {
-            Console.WriteLine(point);
-        }
-        Console.WriteLine();
-    } */
 } 

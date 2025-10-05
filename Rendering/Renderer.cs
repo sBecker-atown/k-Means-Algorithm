@@ -7,6 +7,10 @@ internal class Renderer
 {
     private readonly RenderPoint[,] _renderPoints = new RenderPoint[Values.MaxHeight, Values.MaxWidth];
 
+    private const string Centroid = "\u25cf";
+    private const string Point = "•"; // "*"; //"•" "\u25aa"
+    private const string Blank = " ";
+    
     private void ResetRenderPoints()
     {
         for (var i = 0; i < Values.MaxHeight; i++)
@@ -50,120 +54,68 @@ internal class Renderer
 
     public void Draw()
     {
-        var centroid = "\u25cf";
-        var point = "•"; // "*"; //"•" "\u25aa"
-        var blank = " ";
-        
         for (var i = 0; i < Values.MaxHeight; i++)
         {
             for (var j = 0; j < Values.MaxWidth; j++)
             {
                 var currentPoint = _renderPoints[i, j];
-                if (currentPoint.ClusterId == 1)
+                switch (currentPoint.ClusterId)
                 {
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    if (currentPoint.Type == PointType.Centroid)
-                    {
-                        Console.Write(centroid);
-                    }
-                    if (currentPoint.Type == PointType.Point)
-                    {
-                        Console.Write(point);
-                    }
-                    if (currentPoint.Type == PointType.Blank)
-                    {
-                        Console.Write(blank);
-                    }
-                    Console.ResetColor();
-                }
-                if (currentPoint.ClusterId == 2)
-                {
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    if (currentPoint.Type == PointType.Centroid)
-                    {
-                        Console.Write(centroid);
-                    }
-                    if (currentPoint.Type == PointType.Point)
-                    {
-                        Console.Write(point);
-                    }
-                    if (currentPoint.Type == PointType.Blank)
-                    {
-                        Console.Write(blank);
-                    }
-                    Console.ResetColor();
-                }
-                if (currentPoint.ClusterId == 3)
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    if (currentPoint.Type == PointType.Centroid)
-                    {
-                        Console.Write(centroid);
-                    }
-                    if (currentPoint.Type == PointType.Point)
-                    {
-                        Console.Write(point);
-                    }
-                    if (currentPoint.Type == PointType.Blank)
-                    {
-                        Console.Write(blank);
-                    }
-                    Console.ResetColor();
-                }
-                if (currentPoint.ClusterId == 4)
-                {
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    if (currentPoint.Type == PointType.Centroid)
-                    {
-                        Console.Write(centroid);
-                    }
-                    if (currentPoint.Type == PointType.Point)
-                    {
-                        Console.Write(point);
-                    }
-                    if (currentPoint.Type == PointType.Blank)
-                    {
-                        Console.Write(blank);
-                    }
-                    Console.ResetColor();
-                }
-                if (currentPoint.ClusterId == 5)
-                {
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    if (currentPoint.Type == PointType.Centroid)
-                    {
-                        Console.Write(centroid);
-                    }
-                    if (currentPoint.Type == PointType.Point)
-                    {
-                        Console.Write(point);
-                    }
-                    if (currentPoint.Type == PointType.Blank)
-                    {
-                        Console.Write(blank);
-                    }
-                    Console.ResetColor();
-                }
-                if (currentPoint.ClusterId == 0)
-                {
-                    Console.Write(blank);
+                    case 1:
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        DrawPoint(currentPoint);
+                        break;
+                    case 2:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        DrawPoint(currentPoint);
+                        break;
+                    case 3:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        DrawPoint(currentPoint);
+                        break;
+                    case 4:
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        DrawPoint(currentPoint);
+                        break;
+                    case 5:
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        DrawPoint(currentPoint);
+                        break;
+                    case 0:
+                        Console.Write(Blank);
+                        break;
                 }
             }
             Console.Write("\n");
         }
     }
 
+    private void DrawPoint(RenderPoint currentPoint)
+    {
+        switch (currentPoint.Type)
+        {
+            case PointType.Centroid:
+                Console.Write(Centroid);
+                break;
+            case PointType.Point:
+                Console.Write(Point);
+                break;
+            case PointType.Blank:
+            default:
+                Console.Write(Blank);
+                break;
+        }
+        Console.ResetColor();
+    }
+
     private int NormalizeVertical(int value)
     {
-        if (value <= 0)
+        return value switch
         {
-            return 1;
-        }
-        if (value >= Values.MaxHeight)
-        {
-            return Values.MaxHeight - 1;
-        }
-        return value;
+            <= 0 => 1,
+            >= Values.MaxHeight => Values.MaxHeight - 1,
+            _ => value
+        };
     }
     
     private int NormalizeHorizontal(int value)
