@@ -90,7 +90,7 @@ internal class Renderer
         }
     }
 
-    private void DrawPoint(RenderPoint currentPoint)
+    private static void DrawPoint(RenderPoint currentPoint)
     {
         switch (currentPoint.Type)
         {
@@ -108,7 +108,7 @@ internal class Renderer
         Console.ResetColor();
     }
 
-    private int NormalizeVertical(int value)
+    private static int NormalizeVertical(int value)
     {
         return value switch
         {
@@ -118,7 +118,7 @@ internal class Renderer
         };
     }
     
-    private int NormalizeHorizontal(int value)
+    private static int NormalizeHorizontal(int value)
     {
         return value switch
         {
